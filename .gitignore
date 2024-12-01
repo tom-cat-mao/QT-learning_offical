@@ -9,3 +9,6 @@ HelloWorld/*
 
 # Ignore .o files
 *.o
+
+# Ignore .pro.user files
+*.pro.user
