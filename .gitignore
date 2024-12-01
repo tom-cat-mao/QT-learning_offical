@@ -4,9 +4,6 @@
 # Ignore .log files
 *.log
 
-# Ignore all the files in HelloWorld directory
-HelloWorld/*
-
 # Ignore .o files
 *.o
 

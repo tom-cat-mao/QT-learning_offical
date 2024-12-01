@@ -330,3 +330,76 @@ These macros are actually used to convert the provided method signature into a s
 
 Slots are like normal methods, but with **small decorations around**
 Signals need **little to no implementation** at all.
+
+Describe in the following checklist:
+- add Q_OBJECT macro
+- add **signals** section, and write signals prototypes
+- add **public slots** or **protected slots** or **private slots** sections, and write slots prototypes
+- implement slots as normal methods
+- establish connections
+
+### Creating Signals
+
+Emitted using the **emit** keyword:
+```cpp
+emit mySignal();
+```
+
+Send signals that hace parametersn should pass them in the signal emission:
+```cpp
+emit mySignal(firstParameter, secondParameter ...);
+```
+
+**Example**
+
+When clicking on the button, the text is changed.
+
+```cpp
+m_button->setCheckable(true); // make the button checkable
+
+connect(m_button, SIGNAL (clicked(bool)), this, SLOT (slotButtonClicked(bool)));
+
+void Window::slotButtonClicked(bool checked)
+{
+ if (checked) {
+ m_button->setText("Checked");
+ } else {
+ m_button->setText("Hello World");
+ }
+}
+```
+### Emitting Custom Signals
+
+**Example**
+
+Close the application if the button is clicked (checked or unchecked) 10 times. 
+
+windows.h
+```cpp
+signals:
+    void counterReached();
+
+private:
+    int m_counter;
+```
+
+windows.cpp
+
+```cpp
+m_counter = 0;
+connect(this, SIGNAL (counterReached()), QApplication::instance(), SLOT (quit()));
+
+void Window::slotButtonClicked(bool checked)
+{
+ if (checked) {
+ m_button->setText("Checked");
+ } else {
+ m_button->setText("Hello World");
+ }
+
+ if (++m_counter == 10) {
+ emit counterReached();
+ }
+}
+```
+

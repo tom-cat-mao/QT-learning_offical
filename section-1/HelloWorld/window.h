@@ -10,11 +10,16 @@ class Window : public QWidget
 public:
     explicit Window(QWidget *parent = nullptr);
 
+signals:
+    void counterReached();
+
+private slots:
+    void slotButtonClicked(bool checked);
+
 private:
     QPushButton *m_button;
+    int m_counter;
 
-// signals:
-// public slots:
 };
 
 #endif // WINDOW_H
