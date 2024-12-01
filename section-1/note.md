@@ -397,9 +397,55 @@ void Window::slotButtonClicked(bool checked)
  m_button->setText("Hello World");
  }
 
- if (++m_counter == 10) {
+ m_counter++;
+ if (m_counter == 10) {
  emit counterReached();
  }
 }
 ```
 
+## Widgets
+
+[**QRadioButton**](https://doc.qt.io/qt-6/qradiobutton.html#) behaves just like a QPushButton. 
+
+Use [QButtonGroup](https://doc.qt.io/qt-6/qbuttongroup.html#) to group radio buttons together.
+
+**Example**
+```cpp
+QButtonGroup *buttonGroup = new QButtonGroup(object);
+
+// Add buttons in the button group
+buttonGroup->addButton(button1);
+buttonGroup->addButton(button2);
+buttonGroup->addButton(button3);
+...
+```
+## Signals and Slots
+
+**Example**
+```cpp
+#include <QApplication>
+#include <QPushButton>
+
+int main(int argc, char **argv)
+{
+ QApplication app (argc, argv);
+
+QWidget window;
+ window.setFixedSize(100, 80);
+
+QPushButton *buttonInfo = new QPushButton("Info", &window);
+ buttonInfo->setGeometry(10, 10, 80, 30);
+
+QPushButton *buttonQuit = new QPushButton("Quit", &window);
+ buttonQuit->setGeometry(10, 40, 80, 30);
+
+window.show();
+
+// Add your code here
+
+return app.exec();
+}
+```
+## Finding information in the documentation
+place to find *everything* related to Qt.

@@ -25,7 +25,8 @@ void Window::slotButtonClicked(bool checked) {
         m_button->setText("Helo World");
     }
 
-    if (++m_counter == 10) {
+    m_counter++;
+    if (m_counter == 10) {
         emit counterReached();
     }
 }
